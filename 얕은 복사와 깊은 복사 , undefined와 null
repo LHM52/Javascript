@@ -1,0 +1,58 @@
+얕은 복사(Shallow Copy)와  깊은 복사(Deep Copy)
+자바스크립트에서 객체를 복사할 때, 단순히 참조(주소)만 복사하는지, 
+내부 데이터까지 완전히 새로운 복사본을 만드는지에 따라 얕은 복사(Shallow Copy) 와 깊은 복사(Deep Copy) 로 나뉜다.
+
+               얕은 복사(Shallow Copy)	                    깊은 복사(Deep Copy)
+복사 방식	     최상위 프로퍼티만 복사,                     중첩 객체는 참조	중첩 객체까지 완전히 새로운 복사본 생성
+원본 영향	     중첩 객체 변경 시 원본도 변경됨	           완전히 독립적, 원본 영향 없음
+사용 방법	     { ...obj }, Object.assign()	             JSON.parse(JSON.stringify(obj)), 
+                                                         _.cloneDeep(), 직접 구현
+단점	         중첩 객체까지 복사 안 됨	                   속도가 느릴 수 있음
+
+---------------------------------------------------------------------------
+ undefined와 null
+
+자바스크립트에서 undefined와 null은 모두 **"값이 비어있다"**는 의미를 가지고 있지만, 각각의 역할과 사용 목적이 다름
+
+                     undefined	                       null
+의미	               값이 정의되지 않음 (자동 할당)	     값이 없음 (개발자가 명시적으로 설정)
+누가 할당?	           자바스크립트 엔진	                 개발자가 직접 할당
+타입	               "undefined"	                     "object" (자바스크립트 버그)
+주로 사용되는 경우	    변수를 선언했지만 값을             변수가 비어있음을 명확히 나타낼 때
+                      안 넣었을 때	
+
+1. undefined란?
+"값이 할당되지 않은 변수" 를 의미.
+자바스크립트가 자동으로 할당함.
+변수를 선언했지만 값을 넣지 않으면 undefined가 기본값.
+
+
+2. null이란?
+"명시적으로 값이 비어있음" 을 의미.
+직접 null을 할당해야함.
+객체가 아직 존재하지 않거나, 나중에 값을 할당할 계획이 있을 때 사용함.
+
+
+undefined 예제
+
+var a;  // 선언만 하고 값을 할당하지 않음
+console.log(a); // undefined
+
+function test(x) {
+    console.log(x); // 인자를 안 넣으면 undefined
+}
+
+test(); // undefined
+
+null 예제 
+
+var obj = null; // 객체를 만들 예정이지만, 아직 값이 없음
+console.log(obj); // null
+
+var person = { name: '사람' };
+person = null; // person 객체를 제거
+
+console.log(person); // null
+
+
+
